@@ -5,7 +5,7 @@
 * ## Eduardo Ceja: lalitoceja@gmaill.com
 
 ## License : 
-CC BY-NC
+GNU General Public License v3.0
 
 ## Introduction: 
 
