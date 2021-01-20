@@ -13,13 +13,13 @@ GNU General Public License v3.0
 ## Results:
 ## Conclusion
 ## Software tools:
-- Python3
-- Numpy
-- Pandas
-- Matplotlib
-- Scikit-learn
-- Streamlit
-- Yellowbrick
+- Python 3.8.3
+- Numpy 1.18.5
+- Pandas 1.0.5
+- Matplotlib 3.2.2
+- Scikit-learn 0.23.1
+- Streamlit 0.69
+- Yellowbrick 1.2
 ## Bibliography:
 
 
