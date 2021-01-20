@@ -6,12 +6,11 @@
 
 ## License : 
 GNU General Public License v3.0
-
 ## Introduction: 
-
 ## General objectives:
 ## Results:
 ## Conclusion
+## Run
 ## Software tools:
 - Python 3.8.3
 - Numpy 1.18.5
