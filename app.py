@@ -27,8 +27,8 @@ elif datasets == "Portuguese":
     dataset = load_dataset("student-por.csv")
 
 
-
-if st.sidebar.checkbox("Flter by sex", True):
+st.sidebar.markdown("Grades")
+if st.sidebar.checkbox("Flter grades by sex", True, key = "0"):
     sex = st.sidebar.selectbox("Sex", ("F", "M"))
     grade_by_sex = dataset[dataset["sex"] == sex]
     final_grade = grade_by_sex["G3"].value_counts()
@@ -41,3 +41,29 @@ else:
     final_grade = pd.DataFrame({"Grade" : final_grade.index, "Count": final_grade.values})
     fig = px.pie(final_grade, values = "Count", names = "Grade")
     st.plotly_chart(fig)
+
+
+st.markdown('## Absences vs Grades')
+
+absences = dataset[["absences", "G3"]]
+fig = px.scatter(absences, x = "absences",y = "G3")
+st.plotly_chart(fig)
+
+st.markdown('## Absences vs Family relations')
+
+absences = dataset[["absences", "famrel"]]
+fig = px.scatter(absences, x = "absences", y = "famrel")
+st.plotly_chart(fig)
+
+
+st.markdown ('## Health vs Absences')
+absences = dataset[["absences", "health"]]
+fig = px.scatter(absences, x = "absences", y = "health")
+st.plotly_chart(fig)
+
+
+st.markdown ('## Weekly drinking vs Family relations')
+drink = dataset[["famrel", "Dalc", "Walc"]]
+drink["weekly_drink"] = drink["Dalc"] + drink["Walc"]
+fig = px.scatter(drink, x = "famrel", y = "weekly_drink")
+st.plotly_chart(fig)
