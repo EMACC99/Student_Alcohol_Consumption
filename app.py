@@ -46,24 +46,26 @@ else:
 st.markdown('## Absences vs Grades')
 
 absences = dataset[["absences", "G3"]]
-fig = px.scatter(absences, x = "absences",y = "G3")
+fig = px.box(absences, x = "absences",y = "G3")
 st.plotly_chart(fig)
 
 st.markdown('## Absences vs Family relations')
 
 absences = dataset[["absences", "famrel"]]
-fig = px.scatter(absences, x = "absences", y = "famrel")
+fig = px.box(absences, x = "absences", y = "famrel")
 st.plotly_chart(fig)
 
 
 st.markdown ('## Health vs Absences')
 absences = dataset[["absences", "health"]]
-fig = px.scatter(absences, x = "absences", y = "health")
+fig = px.box(absences, x = "absences", y = "health")
 st.plotly_chart(fig)
 
 
 st.markdown ('## Weekly drinking vs Family relations')
 drink = dataset[["famrel", "Dalc", "Walc"]]
 drink["weekly_drink"] = drink["Dalc"] + drink["Walc"]
-fig = px.scatter(drink, x = "famrel", y = "weekly_drink")
+fig = px.box(drink, x = "famrel", y = "weekly_drink")
 st.plotly_chart(fig)
+
+
