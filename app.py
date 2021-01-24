@@ -26,7 +26,7 @@ if datasets == "Math":
 elif datasets == "Portuguese":
     dataset = load_dataset("student-por.csv")
 
-
+st.markdown('## Grades by group')
 st.sidebar.markdown("Grades")
 if st.sidebar.checkbox("Flter grades by sex", True, key = "0"):
     sex = st.sidebar.selectbox("Sex", ("F", "M"))
@@ -69,3 +69,14 @@ fig = px.box(drink, x = "famrel", y = "weekly_drink")
 st.plotly_chart(fig)
 
 
+st.markdown('## Go out vs Weekly Drinking')
+drink = dataset[["goout", "Dalc", "Walc"]]
+drink["weekly_drink"] = drink["Dalc"] + drink["Walc"]
+fig = px.scatter(drink, x = "goout", y='weekly_drink')
+st.plotly_chart(fig)
+
+st.markdown('## Higher education')
+education = dataset['higher'].value_counts()
+education = pd.DataFrame({"Higher Education": education.index, "Count": education.values})
+fig = px.bar(education, x = 'Higher Education', y = "Count")
+st.plotly_chart(fig)
