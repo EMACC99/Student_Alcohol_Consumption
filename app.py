@@ -5,12 +5,8 @@ import numpy as np
 import plotly.express as px
 import seaborn as sns
 
-# @st.cache(persist= True)
-def compute_svd(df):
-    u,s,v = np.linalg.svd(df, full_matrices=False, compute_uv=True)
-    return (u,s,v)
 
-# @st.cache(persist = True)
+@st.cache(persist = True)
 def load_dataset(filename):
     data = pd.read_csv(f"Datasets/{filename}")
     return data
@@ -32,13 +28,13 @@ datasets = st.sidebar.selectbox(
 
 if datasets == "Math":
     dataset = load_dataset("student-mat.csv")
-    # encoded_dataset = load_dataset("mat_dataset_encoded.csv")
     reducted = np.genfromtxt('Datasets/mat_reduct.txt', delimiter =',')
     reducted_3d = np.genfromtxt("Datasets/mat_reduct_3d.txt", delimiter = ',', dtype=float)
     group_file = "mat"
 elif datasets == "Portuguese":
     dataset = load_dataset("student-por.csv")
-    encoded_dataset = load_dataset("por_dataset_encoded.csv")
+    reducted = np.genfromtxt('Datasets/por_reduct_2d.txt', delimiter = ',')
+    reducted_3d = np.genfromtxt('Datasets/por_reduct_3d.txt', delimiter = ',')   
     group_file = "por"
 st.markdown('## Grades by group')
 st.sidebar.markdown("Grades")
@@ -96,14 +92,10 @@ fig = px.bar(education, x = 'Higher Education', y = "Count")
 st.plotly_chart(fig)
 
 st.markdown('## Plotting the Data')
-# print(encoded_dataset)
+
 data_reducted = np.array(reducted, dtype=float)
-# data_reducted3d = np.array(reducted_3d, dtype=float)
-# print(data_reducted3d)
-# print(encoded_dataset)
-# u,s,v = compute_svd(encoded_dataset)
-# u,s,v = np.linalg.svd(encoded_dataset, full_matrices=False, compute_uv=True)
-k = st.sidebar.slider("K", min_value=2, max_value=5, key = '1')
+
+k = st.sidebar.slider("Number of groups (K)", min_value=2, max_value=5, key = '1')
 aux = f'{group_file}_{k}.txt'
 labels = load_labels(aux)
 if st.sidebar.checkbox("3D", True, key ='0'):
