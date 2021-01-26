@@ -3,12 +3,9 @@
 ## Authors: 
 * ## Cesar Arcos: cesar99ag@gmail.com
 * ## Eduardo Ceja: lalitoceja@gmaill.com
-
 ## License : 
 GNU General Public License v3.0
 ## Introduction: 
-## General objectives:
-## Results:
 ## Conclusion
 ## Run
 ## Software tools:
@@ -19,6 +16,6 @@ GNU General Public License v3.0
 - Scikit-learn 0.23.1
 - Streamlit 0.69
 - Yellowbrick 1.2
-## Bibliography:
+- Seaborn 0.10.1
 
 
