@@ -4,3 +4,4 @@ matplotlib==3.2.2
 scikit-learn==0.23.1
 streamlit==0.69
 yellowbrick==1.2
+plotly_express==0.4.0
