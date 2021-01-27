@@ -16,28 +16,28 @@ def load_labels(label_file):
 st.title("Student Alcohol Consumption")
 st.sidebar.title("Student Alcohol Consumption")
 
-st.markdown("Visualization of the datasets from the kaggle about Student Alcohol Consumtpion")
-st.sidebar.markdown("Visualization of the datasets from the kaggle about Student Alcohol Consumtpion")
+st.markdown("Visualizacion de los datasets de kaggle sobre Consumo de Alcohol en estudiantes")
+st.sidebar.markdown("Visualizacion de los datasets de kaggle sobre Consumo de Alcohol en estudiantes")
 
 
 datasets = st.sidebar.selectbox(
-    "Dataset:", ('Math', "Portuguese")
+    "Dataset:", ('Matematicas', "Portugues")
 )
 
-if datasets == "Math":
+if datasets == "Matematicas":
     dataset = load_dataset("student-mat.csv")
     reducted = np.genfromtxt('Datasets/mat_reduct.txt', delimiter =',')
     reducted_3d = np.genfromtxt("Datasets/mat_reduct_3d.txt", delimiter = ',', dtype=float)
     group_file = "mat"
-elif datasets == "Portuguese":
+elif datasets == "Portugues":
     dataset = load_dataset("student-por.csv")
     reducted = np.genfromtxt('Datasets/por_reduct_2d.txt', delimiter = ',')
     reducted_3d = np.genfromtxt('Datasets/por_reduct_3d.txt', delimiter = ',')   
     group_file = "por"
-st.markdown('## Grades by group')
-st.sidebar.markdown("Grades")
-if st.sidebar.checkbox("Flter grades by sex", True, key = "0"):
-    sex = st.sidebar.selectbox("Sex", ("F", "M"))
+st.markdown('## Calificaiones por grupo')
+st.sidebar.markdown("calificaiones")
+if st.sidebar.checkbox("Calificaciones por sexo", True, key = "0"):
+    sex = st.sidebar.selectbox("Sexo", ("M", "H"))
     grade_by_sex = dataset[dataset["sex"] == sex]
     final_grade = grade_by_sex["G3"].value_counts()
     final_grade = pd.DataFrame({"Grade" : final_grade.index, "Count": final_grade.values})
@@ -51,49 +51,49 @@ else:
     st.plotly_chart(fig)
 
 
-st.markdown('## Absences vs Grades')
+st.markdown('## Faltas contra Calificaciones')
 
 absences = dataset[["absences", "G3"]]
 fig = px.box(absences, x = "absences",y = "G3")
 st.plotly_chart(fig)
 
-st.markdown('## Absences vs Family relations')
+st.markdown('## Faltas contra Relaciones familiares')
 
 absences = dataset[["absences", "famrel"]]
 fig = px.box(absences, x = "absences", y = "famrel")
 st.plotly_chart(fig)
 
 
-st.markdown ('## Health vs Absences')
+st.markdown ('## Salud contra Faltas')
 absences = dataset[["absences", "health"]]
 fig = px.box(absences, x = "absences", y = "health")
 st.plotly_chart(fig)
 
 
-st.markdown ('## Weekly drinking vs Family relations')
+st.markdown ('## Consumo a la semana vs Relaciones familiares')
 drink = dataset[["famrel", "Dalc", "Walc"]]
 drink["weekly_drink"] = round((drink["Dalc"] + drink["Walc"])/2)
 fig = px.box(drink, x = "famrel", y = "weekly_drink")
 st.plotly_chart(fig)
 
 
-st.markdown('## Go out vs Weekly Drinking')
+st.markdown('## Salir vs Consumo semanal')
 drink = dataset[["goout", "Dalc", "Walc"]]
 drink["weekly_drink"] = round((drink["Dalc"] + drink["Walc"])/2)
 fig = px.scatter(drink, x = "goout", y='weekly_drink')
 st.plotly_chart(fig)
 
-st.markdown('## Higher education')
+st.markdown('## Educacion superior')
 education = dataset['higher'].value_counts()
 education = pd.DataFrame({"Higher Education": education.index, "Count": education.values})
 fig = px.bar(education, x = 'Higher Education', y = "Count")
 st.plotly_chart(fig)
 
-st.markdown('## Plotting the Data')
+st.markdown('## Graficando los datos')
 
 data_reducted = np.array(reducted, dtype=float)
 
-k = st.sidebar.slider("Number of groups (K)", min_value=2, max_value=5, key = '1')
+k = st.sidebar.slider("Numero de grupos (K)", min_value=2, max_value=5, key = '1')
 aux = f'{group_file}_{k}.txt'
 labels = load_labels(aux)
 if st.sidebar.checkbox("3D", True, key ='0'):
