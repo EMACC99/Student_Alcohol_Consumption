@@ -34,7 +34,7 @@ elif datasets == "Portugues":
     reducted = np.genfromtxt('Datasets/por_reduct_2d.txt', delimiter = ',')
     reducted_3d = np.genfromtxt('Datasets/por_reduct_3d.txt', delimiter = ',')   
     group_file = "por"
-st.markdown('## Calificaiones por grupo')
+st.markdown('## Calificaciones por grupo')
 st.sidebar.markdown("calificaiones")
 if st.sidebar.checkbox("Calificaciones por sexo", True, key = "0"):
     sex = st.sidebar.selectbox("Sexo", ("M", "H"))
